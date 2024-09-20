@@ -1,7 +1,7 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -124,10 +124,15 @@ compose.desktop {
 dependencies {
     add("kspCommonMainMetadata",libs.koin.compiler)
     add("kspCommonMainMetadata",libs.room.compiler)
+    add("kspAndroid", libs.koin.compiler)
 }
 
-tasks.withType<KotlinCompile<*>>().configureEach {
-    if (name != "kspCommonMainKotlinMetadata") {
+project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
+    if(name != "kspCommonMainKotlinMetadata") {
         dependsOn("kspCommonMainKotlinMetadata")
     }
+}
+
+ksp{
+    arg("KOIN_CONFIG_CHECK","true")
 }
