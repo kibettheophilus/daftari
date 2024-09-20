@@ -53,6 +53,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
 
             implementation(libs.bundles.koin)
         }
