@@ -7,4 +7,4 @@ workflows:
         scripts:
         - name: Build 
           script: |
-           ./gradlew build
+           ./gradlew assembleDebug
