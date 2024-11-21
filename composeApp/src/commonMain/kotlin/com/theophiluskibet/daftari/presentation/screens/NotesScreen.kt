@@ -44,25 +44,25 @@ fun registerScreens() {
 }
 
 
-val module = module {
-    single { NoteScreenModel(repo = get()) }
-    singleOf(::NoteScreenModel)
-}
-
-class Repository {
-
-}
-
-class NoteScreenModel(val repo: Repository, ) : ScreenModel {
-
-
-    fun updateId() {
-        screenModelScope.launch {
-
-        }
-    }
-}
-
+//val module = module {
+//    single { NoteScreenModel(repo = get()) }
+//    singleOf(::NoteScreenModel)
+//}
+//
+//class Repository {
+//
+//}
+//
+//class NoteScreenModel(val repo: Repository, ) : ScreenModel {
+//
+//
+//    fun updateId() {
+//        screenModelScope.launch {
+//
+//        }
+//    }
+//}
+//
 
 object NotesScreen : Screen {
     @Composable
@@ -70,7 +70,7 @@ object NotesScreen : Screen {
         val navigator = LocalNavigator.currentOrThrow
 
 
-        val screenModel = koinScreenModel<NoteScreenModel>()
+//        val screenModel = koinScreenModel<NoteScreenModel>()
 
 
         val detailScreen = rememberScreen(SharedScreen.Details(id = "Mumbi"))
@@ -92,28 +92,28 @@ object NotesScreen : Screen {
 
 data class DetailScreenState(val id: String? = null)
 
-class DetailScreenModel : StateScreenModel<DetailScreenState>(DetailScreenState()) {
-    fun updateId(id: String) {
-        mutableState.update {
-            it.copy(id = id)
-        }
-    }
-}
+//class DetailScreenModel : StateScreenModel<DetailScreenState>(DetailScreenState()) {
+//    fun updateId(id: String) {
+//        mutableState.update {
+//            it.copy(id = id)
+//        }
+//    }
+//}
 
 data class DetailScreen(val id: String) : Screen {
     @Composable
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
-        val screenModel = rememberScreenModel { DetailScreenModel() }
-        screenModel.updateId(id = id)
-        val state by screenModel.state.collectAsStateWithLifecycle()
-
+//        val screenModel = rememberScreenModel { DetailScreenModel() }
+//        screenModel.updateId(id = id)
+//        val state by screenModel.state.collectAsStateWithLifecycle()
+//
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("${state.id} Screen ")
+            Text("Details Screen ")
             Button(onClick = {
                 navigator.pop()
             }) {
