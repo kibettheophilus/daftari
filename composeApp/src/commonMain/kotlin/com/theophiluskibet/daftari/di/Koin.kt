@@ -42,8 +42,3 @@ class AppModule
 
 @Module
 expect class PlatformModule()
-
-@Single
-expect class NoteDatabaseWrapper {
-    fun createDatabase(): RoomDatabase.Builder<NotesDatabase>
-}

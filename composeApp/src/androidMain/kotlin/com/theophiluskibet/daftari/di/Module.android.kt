@@ -10,18 +10,15 @@ import org.koin.core.annotation.Single
 
 @Module
 @ComponentScan("com.theophiluskibet.daftari")
-actual class PlatformModule actual constructor()
+actual class PlatformModule
 
 @Single
-actual class NoteDatabaseWrapper(private val context: Context){
-    @Single
-    actual fun createDatabase(): RoomDatabase.Builder<NotesDatabase> {
-        val appContext = context.applicationContext
-        val dbFile = appContext.getDatabasePath("daftari.db")
+fun createDatabase(context: Context): RoomDatabase.Builder<NotesDatabase> {
+    val appContext = context.applicationContext
+    val dbFile = appContext.getDatabasePath("daftari.db")
 
-        return Room.databaseBuilder(
-            context = appContext,
-            name = dbFile.absolutePath
-        )
-    }
+    return Room.databaseBuilder(
+        context = appContext,
+        name = dbFile.absolutePath
+    )
 }
