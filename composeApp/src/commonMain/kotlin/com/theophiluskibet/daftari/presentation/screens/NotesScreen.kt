@@ -45,7 +45,7 @@ fun registerScreens() {
 
 
 val module = module {
-    single { NoteScreenModel(repo = get(), repo) }
+    single { NoteScreenModel(repo = get()) }
     singleOf(::NoteScreenModel)
 }
 
@@ -63,9 +63,6 @@ class NoteScreenModel(val repo: Repository, ) : ScreenModel {
     }
 }
 
-val uiModule = module {
-    single { NoteScreenModel() }
-}
 
 object NotesScreen : Screen {
     @Composable
