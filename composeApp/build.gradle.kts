@@ -126,6 +126,7 @@ compose.desktop {
 dependencies {
     add("kspCommonMainMetadata",libs.koin.compiler)
     add("kspCommonMainMetadata",libs.room.compiler)
+    add("kspAndroid",libs.room.compiler)
     add("kspAndroid", libs.koin.compiler)
 }
 
