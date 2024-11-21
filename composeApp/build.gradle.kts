@@ -70,6 +70,23 @@ kotlin {
     }
 }
 
+dependencies {
+    add("kspCommonMainMetadata",libs.koin.compiler)
+    add("kspCommonMainMetadata",libs.room.compiler)
+    add("kspAndroid",libs.room.compiler)
+    add("kspAndroid", libs.koin.compiler)
+}
+
+project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
+    if(name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+ksp{
+    arg("KOIN_CONFIG_CHECK","true")
+}
+
 room {
     schemaDirectory("$projectDir/schemas")
 }
@@ -123,19 +140,3 @@ compose.desktop {
     }
 }
 
-dependencies {
-    add("kspCommonMainMetadata",libs.koin.compiler)
-    add("kspCommonMainMetadata",libs.room.compiler)
-    add("kspAndroid",libs.room.compiler)
-    add("kspAndroid", libs.koin.compiler)
-}
-
-project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
-    if(name != "kspCommonMainKotlinMetadata") {
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
-}
-
-ksp{
-    arg("KOIN_CONFIG_CHECK","true")
-}
