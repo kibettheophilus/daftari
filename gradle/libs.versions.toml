@@ -20,6 +20,7 @@ kotlin = "2.0.20"
 ksp = "2.0.20-1.0.25"
 room = "2.7.0-alpha08"
 sqlite = "2.5.0-SNAPSHOT"
+voyager = "1.1.0-beta02"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
@@ -46,6 +47,11 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-annotations = { group = "io.insert-koin", name = "koin-annotations", version.ref = "koin-annotations" }
 koin-compiler = { group = "io.insert-koin", name = "koin-ksp-compiler", version.ref = "koin-annotations" }
 
+# voyager
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-screenmodel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
+voyager-koin = { module = "cafe.adriel.voyager:voyager-koin", version.ref = "voyager" }
+
 # test
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
@@ -55,6 +61,7 @@ androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-co
 
 [bundles]
 koin = ["koin-core", "koin-annotations"]
+voyager = ["voyager-navigator", "voyager-screenmodel", "voyager-koin"]
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

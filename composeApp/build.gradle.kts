@@ -56,6 +56,8 @@ kotlin {
             implementation(libs.sqlite.bundled)
 
             implementation(libs.bundles.koin)
+
+            implementation(libs.bundles.voyager)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
