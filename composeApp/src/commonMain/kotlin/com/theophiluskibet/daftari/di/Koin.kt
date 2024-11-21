@@ -11,12 +11,13 @@ import org.koin.core.annotation.Module
 import org.koin.core.annotation.Single
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
+import org.koin.dsl.includes
 import org.koin.ksp.generated.module
 
-fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
+fun initKoin(appDeclaration: KoinAppDeclaration? = null) =
     startKoin {
-        appDeclaration()
         modules(AppModule().module)
+        includes(appDeclaration)
     }
 
 
@@ -40,4 +41,9 @@ class DataModule {
 class AppModule
 
 @Module
-expect class PlatformModule
+expect class PlatformModule()
+
+@Single
+expect class NoteDatabaseWrapper {
+    fun createDatabase(): RoomDatabase.Builder<NotesDatabase>
+}
