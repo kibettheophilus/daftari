@@ -18,7 +18,7 @@ koin = "4.1.0-Beta1"
 koin-annotations = "2.0.0-Beta2"
 kotlin = "2.0.21"
 ksp = "2.0.21-1.0.26"
-room = "2.7.0-alpha11"
+room = "2.7.0-alpha01"
 sqlite = "2.5.0-SNAPSHOT"
 voyager = "1.1.0-beta02"
 
