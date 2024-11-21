@@ -73,7 +73,6 @@ kotlin {
 dependencies {
     add("kspCommonMainMetadata",libs.koin.compiler)
     add("kspCommonMainMetadata",libs.room.compiler)
-    add("kspAndroid",libs.room.compiler)
     add("kspAndroid", libs.koin.compiler)
 }
 
@@ -84,7 +83,8 @@ project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
 }
 
 ksp{
-    arg("KOIN_CONFIG_CHECK","true")
+    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
+    //arg("KOIN_CONFIG_CHECK","true")
 }
 
 room {
@@ -139,4 +139,3 @@ compose.desktop {
         }
     }
 }
-
