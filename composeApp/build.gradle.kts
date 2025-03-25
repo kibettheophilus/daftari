@@ -72,20 +72,16 @@ dependencies {
     // koin
     add("kspCommonMainMetadata",libs.koin.compiler)
     add("kspAndroid", libs.koin.compiler)
+    add("kspDesktop", libs.koin.compiler)
     add("kspIosSimulatorArm64", libs.koin.compiler)
     add("kspIosX64", libs.koin.compiler)
     add("kspIosArm64", libs.koin.compiler)
     // room
     add("kspAndroid", libs.room.compiler)
+    add("kspDesktop", libs.room.compiler)
     add("kspIosSimulatorArm64", libs.room.compiler)
     add("kspIosX64", libs.room.compiler)
     add("kspIosArm64", libs.room.compiler)
-}
-
-project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
-    if(name != "kspCommonMainKotlinMetadata") {
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
 }
 
 ksp{
