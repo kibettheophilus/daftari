@@ -14,7 +14,6 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -71,9 +70,18 @@ kotlin {
 }
 
 dependencies {
+    // koin
     add("kspCommonMainMetadata",libs.koin.compiler)
-    add("kspCommonMainMetadata",libs.room.compiler)
     add("kspAndroid", libs.koin.compiler)
+    add("kspIosSimulatorArm64", libs.koin.compiler)
+    add("kspIosX64", libs.koin.compiler)
+    add("kspIosArm64", libs.koin.compiler)
+    // room
+    add("kspCommonMainMetadata",libs.room.compiler)
+    add("kspAndroid", libs.room.compiler)
+    add("kspIosSimulatorArm64", libs.room.compiler)
+    add("kspIosX64", libs.room.compiler)
+    add("kspIosArm64", libs.room.compiler)
 }
 
 project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
@@ -84,7 +92,7 @@ project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
 
 ksp{
     arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
-    //arg("KOIN_CONFIG_CHECK","true")
+    arg("KOIN_CONFIG_CHECK","true")
 }
 
 room {
