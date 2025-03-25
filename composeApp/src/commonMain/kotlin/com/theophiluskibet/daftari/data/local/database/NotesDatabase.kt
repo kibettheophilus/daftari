@@ -20,3 +20,5 @@ abstract class NotesDatabase : RoomDatabase() {
 expect object AppDatabaseConstructor: RoomDatabaseConstructor<NotesDatabase>{
     override fun initialize(): NotesDatabase
 }
+
+internal val DATABASE_NAME = "daftari.db"

@@ -76,7 +76,6 @@ dependencies {
     add("kspIosX64", libs.koin.compiler)
     add("kspIosArm64", libs.koin.compiler)
     // room
-    add("kspCommonMainMetadata",libs.room.compiler)
     add("kspAndroid", libs.room.compiler)
     add("kspIosSimulatorArm64", libs.room.compiler)
     add("kspIosX64", libs.room.compiler)
