@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
+import org.koin.core.annotation.Provided
 import org.koin.core.annotation.Single
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
@@ -28,7 +29,7 @@ class DataModule {
     fun provideDao(database: NotesDatabase): NotesDao = database.notesDao()
 
     @Single
-    fun getNotesDb(builder: RoomDatabase.Builder<NotesDatabase>): NotesDatabase {
+    fun getNotesDb(@Provided builder: RoomDatabase.Builder<NotesDatabase>): NotesDatabase {
         return builder
             .fallbackToDestructiveMigration(true)
             .setDriver(BundledSQLiteDriver())
