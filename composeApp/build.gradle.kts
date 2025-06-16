@@ -1,3 +1,4 @@
+import com.google.devtools.ksp.gradle.KspAATask
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
@@ -70,7 +71,7 @@ kotlin {
 
 dependencies {
     // koin
-    add("kspCommonMainMetadata",libs.koin.compiler)
+    add("kspCommonMainMetadata", libs.koin.compiler)
     add("kspAndroid", libs.koin.compiler)
     add("kspDesktop", libs.koin.compiler)
     add("kspIosSimulatorArm64", libs.koin.compiler)
@@ -84,9 +85,21 @@ dependencies {
     add("kspIosArm64", libs.room.compiler)
 }
 
-ksp{
-    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
-    arg("KOIN_CONFIG_CHECK","true")
+tasks.withType<KotlinCompilationTask<*>> {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+tasks.withType<KspAATask> {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+ksp {
+    arg("KOIN_USE_COMPOSE_VIEWMODEL", "true")
+    arg("KOIN_CONFIG_CHECK", "true")
 }
 
 room {
