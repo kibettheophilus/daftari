@@ -1,6 +1,8 @@
 package com.theophiluskibet.daftari.di
 
 import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.theophiluskibet.daftari.data.local.database.DATABASE_NAME
@@ -22,4 +24,9 @@ fun createDatabase(context: Context): RoomDatabase.Builder<NotesDatabase> {
         context = appContext,
         name = dbFile.absolutePath
     )
+}
+
+@Single
+fun provideDatastore(context: Context): DataStore<Preferences> = createDataStore {
+    context.filesDir.resolve(dataStoreFileName).absolutePath
 }

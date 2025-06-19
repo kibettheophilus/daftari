@@ -57,6 +57,8 @@ kotlin {
             implementation(libs.bundles.koin)
 
             implementation(libs.bundles.voyager)
+
+            implementation(libs.bundles.datastore)
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

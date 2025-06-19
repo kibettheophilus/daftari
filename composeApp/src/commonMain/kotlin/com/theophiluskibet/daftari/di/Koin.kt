@@ -1,11 +1,15 @@
 package com.theophiluskibet.daftari.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.PreferenceDataStoreFactory
+import androidx.datastore.preferences.core.Preferences
 import androidx.room.RoomDatabase
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import com.theophiluskibet.daftari.data.local.dao.NotesDao
 import com.theophiluskibet.daftari.data.local.database.NotesDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import okio.Path.Companion.toPath
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Provided
@@ -43,3 +47,10 @@ class AppModule
 
 @Module
 expect class PlatformModule()
+
+fun createDataStore(producePath: () -> String): DataStore<Preferences> =
+    PreferenceDataStoreFactory.createWithPath(
+        produceFile = { producePath().toPath() }
+    )
+
+internal const val dataStoreFileName = "daftari.preferences_pb"
