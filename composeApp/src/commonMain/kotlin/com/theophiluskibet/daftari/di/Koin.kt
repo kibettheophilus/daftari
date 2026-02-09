@@ -11,17 +11,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import okio.Path.Companion.toPath
 import org.koin.core.annotation.ComponentScan
+import org.koin.core.annotation.KoinApplication
 import org.koin.core.annotation.Module
 import org.koin.core.annotation.Provided
 import org.koin.core.annotation.Single
-import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.includes
-import org.koin.ksp.generated.module
+import org.koin.plugin.module.dsl.startKoin
 
 fun initKoin(appDeclaration: KoinAppDeclaration? = null) =
-    startKoin {
-        modules(AppModule().module)
+    startKoin<AppModule> {
         includes(appDeclaration)
     }
 
@@ -43,6 +42,7 @@ class DataModule {
 }
 
 @Module(includes = [DataModule::class, PlatformModule::class])
+@KoinApplication
 class AppModule
 
 @Module

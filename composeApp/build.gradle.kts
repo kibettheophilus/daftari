@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.koin.compiler)
 }
 
 kotlin {
@@ -72,13 +73,6 @@ kotlin {
 }
 
 dependencies {
-    // koin
-    add("kspCommonMainMetadata", libs.koin.compiler)
-    add("kspAndroid", libs.koin.compiler)
-    add("kspDesktop", libs.koin.compiler)
-    add("kspIosSimulatorArm64", libs.koin.compiler)
-    add("kspIosX64", libs.koin.compiler)
-    add("kspIosArm64", libs.koin.compiler)
     // room
     add("kspAndroid", libs.room.compiler)
     add("kspDesktop", libs.room.compiler)
